@@ -1,5 +1,3 @@
-!groovy
-
 package org.libs.ci
 
 /**
