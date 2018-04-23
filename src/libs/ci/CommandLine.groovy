@@ -1,11 +1,8 @@
 package org.libs.ci
 
 /**
- *
- * Simple abstraction of command line execution
- * in DSL which wraps around timeout, timestamps, envs and console color mode
- * as well as which system it runs on: Linux or Windows depends on slave
- *
+ * Simple abstraction of command line interface which wraps timestamps, timeout, 
+ * envs and console color mode as well as OS it runs on: Linux or Windows
  */
 def execute(String command, envs=[], time=20) {
     timestamps{
