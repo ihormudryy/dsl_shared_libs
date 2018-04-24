@@ -2,12 +2,15 @@ package org.libs.ci
 
 import hudson.plugins.git.GitSCM
 import hudson.plugins.git.BranchSpec
+import hudson.plugins.git.SubmoduleConfig
+import hudson.plugins.git.extensions.GitSCMExtension
+
 import com.cloudbees.jenkins.GitHubPushTrigger
 import com.coravy.hudson.plugins.github.GithubProjectProperty
 import com.google.common.collect.Collections2
 import com.google.common.collect.Lists
-import hudson.plugins.git.extensions.GitSCMExtension
 import org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition
+import org.jenkinsci.plugins.workflow.job.WorkflowJob
 
 def createSimplePipelineJob(repoName, jobName, credId, jenkinsfile) {
     def jenkins = Jenkins.instance
@@ -21,7 +24,7 @@ def createSimplePipelineJob(repoName, jobName, credId, jenkinsfile) {
                           null, null,
                           Collections.<GitSCMExtension>emptyList()
                           )
-    def job = new org.jenkinsci.plugins.workflow.job.WorkflowJob(jenkins, jobName)
+    def job = new WorkflowJob(jenkins, jobName)
     job.setDefinition(new CpsScmFlowDefinition(scm, jenkinsfile))
     job.setTriggers([gitTrigger])
     job.addProperty(projectProperty)
